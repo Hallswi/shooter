@@ -44,7 +44,7 @@ class GameSprite(sprite.Sprite):
     #метод, отрисовывающий героя на окне
     def reset(self):
         window.blit(self.image, (self.rect.x, self.rect.y))
-#
+
 # класс главного игрока
 class Player(GameSprite):
     #метод для управления спрайтом стрелками клавиатуры
@@ -200,7 +200,7 @@ while run:
 
         display.update()
 
-   #бонус: автоматический перезапуск игры
+   #действия, происходящие после финиша
     else:
         finish = False
         score = 0
@@ -209,16 +209,16 @@ while run:
         life = 3
         for b in bullets:
             b.kill()
-        for m in monsters:
+        for m in monsters:#уничтожение монстров
             m.kill()
-        for a in asteroids:
+        for a in asteroids:#уничтожение астероидов
             a.kill()   
         
-        time.delay(3000)
-        for i in range(1, 6):
+        time.delay(3000)#время ожидания
+        for i in range(1, 6):#появление новых монстров
             monster = Enemy(img_enemy, randint(80, win_width - 80), -40, 80, 50, randint(1, 5))
             monsters.add(monster)
-        for i in range(1, 3):
+        for i in range(1, 3):#появление новых астероидов
             asteroid = Enemy(img_ast, randint(30, win_width - 30), -40, 80, 50, randint(1, 7))
             asteroids.add(asteroid)   
 
